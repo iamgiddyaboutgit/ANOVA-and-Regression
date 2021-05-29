@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 6 Final Words | A Minimal Book Example</title>
+  <title>Chapter 10 Checking the Assumptions | A Minimal Book Example</title>
   <meta name="description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 6 Final Words | A Minimal Book Example" />
+  <meta property="og:title" content="Chapter 10 Checking the Assumptions | A Minimal Book Example" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="rstudio/bookdown-demo" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 6 Final Words | A Minimal Book Example" />
+  <meta name="twitter:title" content="Chapter 10 Checking the Assumptions | A Minimal Book Example" />
   
   <meta name="twitter:description" content="This is a minimal example of using the bookdown package to write a book. The output format for this example is bookdown::gitbook." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="applications.html"/>
-<link rel="next" href="references.html"/>
+<link rel="prev" href="step-1-make-up-data.html"/>
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -178,18 +178,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="final-words" class="section level1">
-<h1><span class="header-section-number">Chapter 6</span> Final Words</h1>
-<p>We have finished a nice book.</p>
+<div id="checking-the-assumptions" class="section level1">
+<h1><span class="header-section-number">Chapter 10</span> Checking the Assumptions</h1>
+<p>After running your ANOVA, check that the assumptions about the errors are met so that you can do statistical inference. Those assumptions are:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\text{E}(\epsilon_{ij})=0,\ \text{Var}(\epsilon_{ij})=\sigma_{i}^2 &lt; \infty,\ \text{for all }i, j.\)</span></li>
+<li>The <span class="math inline">\(\epsilon_{ij}\)</span> are mutually independent and normally distributed.</li>
+<li><span class="math inline">\(\sigma_{i}^2=\sigma^2\ \text{for all } i.\)</span></li>
+</ol>
+<div id="checking-assumption-1" class="section level2">
+<h2><span class="header-section-number">10.1</span> Checking Assumption 1</h2>
+</div>
+<div id="assumption-1-was-violated." class="section level2">
+<h2><span class="header-section-number">10.2</span> Assumption 1 was violated.</h2>
+</div>
+<div id="checking-assumption-2" class="section level2">
+<h2><span class="header-section-number">10.3</span> Checking Assumption 2</h2>
+</div>
+<div id="assumption-2-was-violated." class="section level2">
+<h2><span class="header-section-number">10.4</span> Assumption 2 was violated.</h2>
+</div>
+<div id="checking-assumption-3" class="section level2">
+<h2><span class="header-section-number">10.5</span> Checking Assumption 3</h2>
+</div>
+<div id="assumption-3-was-violated." class="section level2">
+<h2><span class="header-section-number">10.6</span> Assumption 3 was violated.</h2>
+<p>A variance-stabilizing transformation of the response variable may help.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="checking-the-assumptions.html#cb48-1"></a><span class="kw">data</span>(<span class="st">&quot;data_mortality&quot;</span>)</span>
+<span id="cb48-2"><a href="checking-the-assumptions.html#cb48-2"></a>transformed_response =<span class="st"> </span><span class="kw">transfo</span>(data_mortality, <span class="dt">prestandardize =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+<pre><code>##  
+##  The input data has 198 rows and 91 columns.</code></pre>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="checking-the-assumptions.html#cb50-1"></a><span class="kw">hist</span>(data_mortality[, <span class="dv">1</span>])</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="checking-the-assumptions.html#cb51-1"></a><span class="kw">hist</span>(transformed_response<span class="op">$</span>Xt[, <span class="dv">1</span>])</span></code></pre></div>
+<p><img src="bookdown-demo_files/figure-html/unnamed-chunk-19-2.png" width="672" /></p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="checking-the-assumptions.html#cb52-1"></a><span class="kw">shapiro.test</span>(data_mortality[, <span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  data_mortality[, 1]
+## W = 0.86877, p-value = 4.552e-12</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="checking-the-assumptions.html#cb54-1"></a><span class="kw">shapiro.test</span>(transformed_response<span class="op">$</span>Xt[, <span class="dv">1</span>])</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  transformed_response$Xt[, 1]
+## W = 0.88041, p-value = 1.968e-11</code></pre>
 
+<div id="refs" class="references">
+<div>
+<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
+</div>
+<div>
+<p>———. 2021. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
+</div>
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="applications.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="step-1-make-up-data.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -221,7 +273,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/05-summary.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/08-anova-tutorial.Rmd",
 "text": "Edit"
 },
 "history": {

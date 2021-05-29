@@ -1,0 +1,38 @@
+# ANOVA Tutorial
+
+```{r}
+library(cellWise)
+```
+
+## Step 1: Make up Data
+
+```{r}
+# dataset1
+
+```
+
+
+
+## Checking the Assumptions
+After running your ANOVA, check that the assumptions about the errors are met so that you can do statistical inference. Those assumptions are:
+
+1. \(\text{E}(\epsilon_{ij})=0,\ \text{Var}(\epsilon_{ij})=\sigma_{i}^2 < \infty,\ \text{for all }i, j.\)
+2. The \(\epsilon_{ij}\) are mutually independent and normally distributed.
+3. \(\sigma_{i}^2=\sigma^2\ \text{for all } i.\)
+
+### Checking Assumption 1
+### Assumption 1 was violated.
+### Checking Assumption 2
+### Assumption 2 was violated.
+### Checking Assumption 3
+### Assumption 3 was violated.
+A variance-stabilizing transformation of the response variable may help. 
+
+```{r}
+data("data_mortality")
+transformed_response = transfo(data_mortality, prestandardize = FALSE)
+hist(data_mortality[, 1])
+hist(transformed_response$Xt[, 1])
+shapiro.test(data_mortality[, 1])
+shapiro.test(transformed_response$Xt[, 1])
+```
