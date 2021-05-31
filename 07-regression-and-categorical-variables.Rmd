@@ -5,7 +5,7 @@ library(tidymodels)
 library(ggplot2)
 ```
 
-There is a profound connection between linear regression and ANOVA.  In order to see this, you have to understand that the categorical variables of an ANOVA can be coded with numbers, which allows them to be used in a linear regression model.  Let us recall the multiple linear regression model.
+There is a profound connection between linear regression and ANOVA.  In order to see this, you have to understand that the categorical variables of an ANOVA can be coded with numbers, which allows them to be used in a linear regression model.  Let us recall [@LinearMod] the multiple linear regression model.
 
 Given a random sample of \(n\) observations 
 \((Y_{i}, X_{i1}, . . ., X_{ip}),\ i=1,...,n\), the basic multiple linear regression model is

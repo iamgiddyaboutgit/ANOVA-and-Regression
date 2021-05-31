@@ -24,7 +24,7 @@
 <meta name="author" content="Yihui Xie" />
 
 
-<meta name="date" content="2021-05-28" />
+<meta name="date" content="2021-05-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -148,15 +148,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="chapter" data-level="7" data-path="regression-and-categorical-variables.html"><a href="regression-and-categorical-variables.html"><i class="fa fa-check"></i><b>7</b> Regression and Categorical Variables</a></li>
-<li class="chapter" data-level="8" data-path="anova-tutorial.html"><a href="anova-tutorial.html"><i class="fa fa-check"></i><b>8</b> ANOVA Tutorial</a></li>
-<li class="chapter" data-level="9" data-path="step-1-make-up-data.html"><a href="step-1-make-up-data.html"><i class="fa fa-check"></i><b>9</b> Step 1: Make up Data</a></li>
-<li class="chapter" data-level="10" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html"><i class="fa fa-check"></i><b>10</b> Checking the Assumptions</a><ul>
-<li class="chapter" data-level="10.1" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html#checking-assumption-1"><i class="fa fa-check"></i><b>10.1</b> Checking Assumption 1</a></li>
-<li class="chapter" data-level="10.2" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html#assumption-1-was-violated."><i class="fa fa-check"></i><b>10.2</b> Assumption 1 was violated.</a></li>
-<li class="chapter" data-level="10.3" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html#checking-assumption-2"><i class="fa fa-check"></i><b>10.3</b> Checking Assumption 2</a></li>
-<li class="chapter" data-level="10.4" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html#assumption-2-was-violated."><i class="fa fa-check"></i><b>10.4</b> Assumption 2 was violated.</a></li>
-<li class="chapter" data-level="10.5" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html#checking-assumption-3"><i class="fa fa-check"></i><b>10.5</b> Checking Assumption 3</a></li>
-<li class="chapter" data-level="10.6" data-path="checking-the-assumptions.html"><a href="checking-the-assumptions.html#assumption-3-was-violated."><i class="fa fa-check"></i><b>10.6</b> Assumption 3 was violated.</a></li>
+<li class="chapter" data-level="8" data-path="anova-tutorial.html"><a href="anova-tutorial.html"><i class="fa fa-check"></i><b>8</b> ANOVA Tutorial</a><ul>
+<li class="chapter" data-level="8.1" data-path="anova-tutorial.html"><a href="anova-tutorial.html#step-1-make-up-data"><i class="fa fa-check"></i><b>8.1</b> Step 1: Make up Data</a></li>
+<li class="chapter" data-level="8.2" data-path="anova-tutorial.html"><a href="anova-tutorial.html#checking-the-assumptions"><i class="fa fa-check"></i><b>8.2</b> Checking the Assumptions</a><ul>
+<li class="chapter" data-level="8.2.1" data-path="anova-tutorial.html"><a href="anova-tutorial.html#checking-assumption-1"><i class="fa fa-check"></i><b>8.2.1</b> Checking Assumption 1</a></li>
+<li class="chapter" data-level="8.2.2" data-path="anova-tutorial.html"><a href="anova-tutorial.html#assumption-1-was-violated."><i class="fa fa-check"></i><b>8.2.2</b> Assumption 1 was violated.</a></li>
+<li class="chapter" data-level="8.2.3" data-path="anova-tutorial.html"><a href="anova-tutorial.html#checking-assumption-2"><i class="fa fa-check"></i><b>8.2.3</b> Checking Assumption 2</a></li>
+<li class="chapter" data-level="8.2.4" data-path="anova-tutorial.html"><a href="anova-tutorial.html#assumption-2-was-violated."><i class="fa fa-check"></i><b>8.2.4</b> Assumption 2 was violated.</a></li>
+<li class="chapter" data-level="8.2.5" data-path="anova-tutorial.html"><a href="anova-tutorial.html#checking-assumption-3"><i class="fa fa-check"></i><b>8.2.5</b> Checking Assumption 3</a></li>
+<li class="chapter" data-level="8.2.6" data-path="anova-tutorial.html"><a href="anova-tutorial.html#assumption-3-was-violated."><i class="fa fa-check"></i><b>8.2.6</b> Assumption 3 was violated.</a></li>
+</ul></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -200,7 +201,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## x recipes::step()  masks stats::step()
 ## • Use tidymodels_prefer() to resolve common conflicts.</code></pre>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="regression-and-categorical-variables.html#cb9-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
-<p>There is a profound connection between linear regression and ANOVA. In order to see this, you have to understand that the categorical variables of an ANOVA can be coded with numbers, which allows them to be used in a linear regression model. Let us recall the multiple linear regression model.</p>
+<p>There is a profound connection between linear regression and ANOVA. In order to see this, you have to understand that the categorical variables of an ANOVA can be coded with numbers, which allows them to be used in a linear regression model. Let us recall<span class="citation"><sup><a href="#ref-LinearMod" role="doc-biblioref">3</a></sup></span> the multiple linear regression model.</p>
 <p>Given a random sample of <span class="math inline">\(n\)</span> observations
 <span class="math inline">\((Y_{i}, X_{i1}, . . ., X_{ip}),\ i=1,...,n\)</span>, the basic multiple linear regression model is
 <span class="math display">\[
@@ -376,67 +377,65 @@ So, our slope estimate is the estimated amount by which the mean of group1 is ab
 ## lm(formula = response ~ group, data = data1)
 ## 
 ## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -6.761 -1.502 -0.346  1.436  5.115 
+##     Min      1Q  Median      3Q     Max 
+## -6.6290 -0.6375  0.6560  1.2980  3.3130 
 ## 
 ## Coefficients:
 ##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   3.7250     0.9208   4.045 0.000759 ***
-## group        -3.5740     1.3022  -2.745 0.013324 *  
+## (Intercept)  67.5990     0.8391  80.564   &lt;2e-16 ***
+## group         0.6180     1.1866   0.521    0.609    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 2.912 on 18 degrees of freedom
-## Multiple R-squared:  0.295,  Adjusted R-squared:  0.2559 
-## F-statistic: 7.533 on 1 and 18 DF,  p-value: 0.01332</code></pre>
+## Residual standard error: 2.653 on 18 degrees of freedom
+## Multiple R-squared:  0.01485,    Adjusted R-squared:  -0.03989 
+## F-statistic: 0.2712 on 1 and 18 DF,  p-value: 0.6089</code></pre>
 <p>Run ANOVA</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="regression-and-categorical-variables.html#cb27-1"></a>data1<span class="op">$</span>group =<span class="st"> </span><span class="kw">as.factor</span>(data1<span class="op">$</span>group)</span>
 <span id="cb27-2"><a href="regression-and-categorical-variables.html#cb27-2"></a>data1_ANOVA_independent_samples =<span class="st"> </span><span class="kw">aov</span>(response <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> data1)</span>
 <span id="cb27-3"><a href="regression-and-categorical-variables.html#cb27-3"></a><span class="kw">summary</span>(data1_ANOVA_independent_samples)</span></code></pre></div>
-<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)  
-## group        1  63.87   63.87   7.533 0.0133 *
-## Residuals   18 152.61    8.48                 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<pre><code>##             Df Sum Sq Mean Sq F value Pr(&gt;F)
+## group        1   1.91    1.91   0.271  0.609
+## Residuals   18 126.73    7.04</code></pre>
 <p>Run t-Test</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="regression-and-categorical-variables.html#cb29-1"></a>(<span class="dt">data1_t_test_independent_samples =</span> <span class="kw">t.test</span>(<span class="dt">x =</span> data1[data1<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;response&quot;</span>], <span class="dt">y =</span> data1[data1<span class="op">$</span>group <span class="op">==</span><span class="st"> </span><span class="dv">0</span>, <span class="st">&quot;response&quot;</span>], <span class="dt">paired =</span> <span class="ot">FALSE</span>, <span class="dt">var.equal =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## 
 ##  Two Sample t-test
 ## 
 ## data:  data1[data1$group == 1, &quot;response&quot;] and data1[data1$group == 0, &quot;response&quot;]
-## t = -2.7446, df = 18, p-value = 0.01332
+## t = 0.52081, df = 18, p-value = 0.6089
 ## alternative hypothesis: true difference in means is not equal to 0
 ## 95 percent confidence interval:
-##  -6.3097714 -0.8382286
+##  -1.875003  3.111003
 ## sample estimates:
 ## mean of x mean of y 
-##     0.151     3.725</code></pre>
+##    68.217    67.599</code></pre>
 <p>Notice the similarities.</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="regression-and-categorical-variables.html#cb31-1"></a><span class="co"># Confidence interval for the difference in the means</span></span>
 <span id="cb31-2"><a href="regression-and-categorical-variables.html#cb31-2"></a><span class="kw">confint</span>(data1_lm_independent_samples, <span class="st">&quot;group&quot;</span>, <span class="dt">level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
-<pre><code>##           2.5 %     97.5 %
-## group -6.309771 -0.8382286</code></pre>
+<pre><code>##           2.5 %   97.5 %
+## group -1.875003 3.111003</code></pre>
 <div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="regression-and-categorical-variables.html#cb33-1"></a>data1_t_test_independent_samples<span class="op">$</span>conf.int</span></code></pre></div>
-<pre><code>## [1] -6.3097714 -0.8382286
+<pre><code>## [1] -1.875003  3.111003
 ## attr(,&quot;conf.level&quot;)
 ## [1] 0.95</code></pre>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="regression-and-categorical-variables.html#cb35-1"></a><span class="co"># p-values</span></span>
 <span id="cb35-2"><a href="regression-and-categorical-variables.html#cb35-2"></a><span class="kw">with</span>(<span class="kw">summary</span>(data1_lm_independent_samples), <span class="kw">unname</span>(<span class="kw">pf</span>(fstatistic[<span class="dv">1</span>],fstatistic[<span class="dv">2</span>],fstatistic[<span class="dv">3</span>],<span class="dt">lower.tail=</span>F)))</span></code></pre></div>
-<pre><code>## [1] 0.01332393</code></pre>
+<pre><code>## [1] 0.60885</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="regression-and-categorical-variables.html#cb37-1"></a><span class="kw">summary</span>(data1_ANOVA_independent_samples)[[<span class="dv">1</span>]][[<span class="dv">1</span>, <span class="dv">5</span>]]</span></code></pre></div>
-<pre><code>## [1] 0.01332393</code></pre>
+<pre><code>## [1] 0.60885</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="regression-and-categorical-variables.html#cb39-1"></a>data1_t_test_independent_samples<span class="op">$</span>p.value</span></code></pre></div>
-<pre><code>## [1] 0.01332393</code></pre>
+<pre><code>## [1] 0.60885</code></pre>
 <p>Now, let’s look at something else. The CO2 data frame has 84 rows and 5 columns of data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli.</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="regression-and-categorical-variables.html#cb41-1"></a><span class="kw">data</span>(<span class="st">&quot;CO2&quot;</span>)</span>
 <span id="cb41-2"><a href="regression-and-categorical-variables.html#cb41-2"></a></span>
 <span id="cb41-3"><a href="regression-and-categorical-variables.html#cb41-3"></a>CO2[<span class="kw">sample</span>(<span class="kw">nrow</span>(CO2), <span class="dt">size =</span> <span class="dv">5</span>), ]</span></code></pre></div>
 <pre><code>##    Plant        Type  Treatment conc uptake
-## 9    Qn2      Quebec nonchilled  175   27.3
-## 48   Mn1 Mississippi nonchilled  675   32.4
-## 21   Qn3      Quebec nonchilled 1000   45.5
-## 25   Qc1      Quebec    chilled  350   34.6
-## 27   Qc1      Quebec    chilled  675   35.4</code></pre>
+## 71   Mc2 Mississippi    chilled   95    7.7
+## 24   Qc1      Quebec    chilled  250   30.3
+## 52   Mn2 Mississippi nonchilled  250   30.6
+## 64   Mc1 Mississippi    chilled   95   10.5
+## 34   Qc2      Quebec    chilled  675   37.5</code></pre>
 <p>What is a linear model? In the context of linear regression, a linear model is a relationship between the responses and the explanatory variables that is linear in the parameters.</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="regression-and-categorical-variables.html#cb43-1"></a>CO2_recipe =<span class="st"> </span><span class="kw">recipe</span>(uptake <span class="op">~</span><span class="st"> </span>., <span class="dt">data =</span> CO2) <span class="op">%&gt;%</span></span>
 <span id="cb43-2"><a href="regression-and-categorical-variables.html#cb43-2"></a><span class="st">  </span><span class="kw">step_dummy</span>(<span class="kw">c</span>(<span class="st">&quot;Type&quot;</span>, <span class="st">&quot;Treatment&quot;</span>))</span>
@@ -473,6 +472,12 @@ So, our slope estimate is the estimated amount by which the mean of group1 is ab
 ## 14 Type_Mississippi   NA       NA         NA      NA       
 ## 15 Treatment_chilled  NA       NA         NA      NA</code></pre>
 
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-LinearMod">
+<p>3. Linear model. <a href="https://en.wikipedia.org/wiki/Linear_model">https://en.wikipedia.org/wiki/Linear_model</a>.</p>
+</div>
 </div>
             </section>
 
