@@ -1,3 +1,42 @@
+# ANOVA Tutorial
+
+```{r}
+library(cellWise)
+```
+
+## Step 1: Make up Data
+
+```{r}
+# dataset1
+
+```
+
+
+
+## Checking the Assumptions
+After running your ANOVA, check that the assumptions about the errors are met so that you can do statistical inference. Those assumptions are:
+
+1. \(\text{E}(\epsilon_{ij})=0,\ \text{Var}(\epsilon_{ij})=\sigma_{i}^2 < \infty,\ \text{for all }i, j.\)
+2. The \(\epsilon_{ij}\) are mutually independent and normally distributed.
+3. \(\sigma_{i}^2=\sigma^2\ \text{for all } i.\)
+
+### Checking Assumption 1
+### Assumption 1 was violated.
+### Checking Assumption 2
+### Assumption 2 was violated.
+### Checking Assumption 3
+### Assumption 3 was violated.
+A variance-stabilizing transformation of the response variable may help. 
+
+```{r}
+data("data_mortality")
+transformed_response = transfo(data_mortality, prestandardize = FALSE)
+hist(data_mortality[, 1])
+hist(transformed_response$Xt[, 1])
+shapiro.test(data_mortality[, 1])
+shapiro.test(transformed_response$Xt[, 1])
+```
+
 # Regression and Categorical Variables
 
 ```{r}
@@ -47,7 +86,7 @@ Here, the \(X_{i,j}\) represent our coded categorical variables.   These categor
 A contrast is a linear combination of variables such that the coefficients sum to 0. 
 \[\sum_i{a_i\theta_i}\quad\text{such that}\quad\sum_i{a_i}=0\]
 
-Unlike in ANOVA, iN regression, it is best to use coding schemes based on orthogonal and fractional contrasts.  Orthogonal contrasts are a set of contrasts in which, for any distinct pair, the sum of the cross-products of the coefficients is 0.
+Unlike in ANOVA, in regression, it is best to use coding schemes based on orthogonal and fractional contrasts.  Orthogonal contrasts are a set of contrasts in which, for any distinct pair, the sum of the cross-products of the coefficients is 0.
 \[\sum_i{a_ib_i}=0\]
 
 I believe that a fractional contrast is such that 
@@ -98,10 +137,17 @@ solve(cbind(rep(1, nrow(contr_mat)), contr_mat))
 
 \[
 \begin{aligned}
+\begin{multlined}
 \beta_0 &= \tfrac{\mu_1+\mu_2+\mu_3}{3} = \text{grand mean response} \\
-2\beta_1 &= \mu_1 - \mu_3  = \text{difference in the mean response between levels 1 & 3 of the old categorical variable}\\
-\tfrac{3}{2}\beta_2 &= \tfrac{\mu_1+\mu_3}{2} - \mu_2 = \text{difference in the mean response between the average of levels 1 & 3 and level 2 of the old categorical variable}
+2\beta_1 &= \mu_1 - \mu_3  = \small\text{difference in the mean response between levels 1 & 3 of the old categorical variable}\\
+\tfrac{3}{2}\beta_2 &= \tfrac{\mu_1+\mu_3}{2} - \mu_2 = \small\text{difference in the mean response between the average of levels 1 & 3 and level 2 of the old categorical variable}
+\end{multlined}
 \end{aligned}
+\]
+
+I said:
+\[
+\Bigl\small\text{I just want}\tiny\text{ small text!}\Bigr
 \]
 
 Let's look at another contrast matrix and see if we can interpret it.
