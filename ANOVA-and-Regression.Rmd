@@ -1,7 +1,27 @@
+---
+title: "ANOVA and Regression"
+author: "Justin Patterson"
+header-includes:
+   - \usepackage{mathtools}
+   - \usepackage{tabularx}
+output:
+  #html_document:
+    #df_print: paged
+    #toc: TRUE
+    #toc_float:
+      #collapsed: false
+  pdf_document:
+    toc: TRUE
+# Custom filename. Idea from https://community.rstudio.com/t/rmarkdown-html-url-name-different-from-rscript-name/1578/3
+knit: (function(inputFile, encoding) { rmarkdown::render(inputFile, encoding = encoding, output_file = file.path(dirname(inputFile), "docs",  "index")) })
+---
+
 # ANOVA Tutorial
 
 ```{r}
 library(cellWise)
+library(knitr)
+opts_chunk$set(tidy.opts=list(width.cutoff=50),tidy=TRUE)
 ```
 
 ## Step 1: Make up Data
@@ -11,22 +31,29 @@ library(cellWise)
 
 ```
 
-
-
 ## Checking the Assumptions
-After running your ANOVA, check that the assumptions about the errors are met so that you can do statistical inference. Those assumptions are:
 
-1. \(\text{E}(\epsilon_{ij})=0,\ \text{Var}(\epsilon_{ij})=\sigma_{i}^2 < \infty,\ \text{for all }i, j.\)
-2. The \(\epsilon_{ij}\) are mutually independent and normally distributed.
-3. \(\sigma_{i}^2=\sigma^2\ \text{for all } i.\)
+After running your ANOVA, check that the assumptions about the errors
+are met so that you can do statistical inference. Those assumptions are:
+
+1.  $\text{E}(\epsilon_{ij})=0,\ \text{Var}(\epsilon_{ij})=\sigma_{i}^2 < \infty,\ \text{for all }i, j.$
+2.  The $\epsilon_{ij}$ are mutually independent and normally
+    distributed.
+3.  $\sigma_{i}^2=\sigma^2\ \text{for all } i.$
 
 ### Checking Assumption 1
+
 ### Assumption 1 was violated.
+
 ### Checking Assumption 2
+
 ### Assumption 2 was violated.
+
 ### Checking Assumption 3
+
 ### Assumption 3 was violated.
-A variance-stabilizing transformation of the response variable may help. 
+
+A variance-stabilizing transformation of the response variable may help.
 
 ```{r}
 data("data_mortality")
@@ -44,14 +71,22 @@ library(tidymodels)
 library(ggplot2)
 ```
 
-There is a profound connection between linear regression and ANOVA.  In order to see this, you have to understand that the categorical variables of an ANOVA can be coded with numbers, which allows them to be used in a linear regression model.  Let us recall [@LinearMod] the multiple linear regression model.
+There is a profound connection between linear regression and ANOVA. In
+order to see this, you have to understand that the categorical variables
+of an ANOVA can be coded with numbers, which allows them to be used in a
+linear regression model. Let us recall [@LinearMod] the multiple linear
+regression model.
 
-Given a random sample of \(n\) observations 
-\((Y_{i}, X_{i1}, . . ., X_{ip}),\ i=1,...,n\), the basic multiple linear regression model is
+Given a random sample of \(n\) observations
+\((Y_{i}, X_{i1}, . . ., X_{ip}),\ i=1,...,n\), the basic multiple linear regression model is 
+
 \[
 Y_{i}=\beta_0+\beta_1X_{i1}+...+\beta_pX_{ip}+\epsilon_i,\quad i=1,...,n
-\]
-where each \(\epsilon_i\) is a random variable with a mean of \(0\). In matrix form, this can be written as
+\] 
+
+where each \(\epsilon_i\) is a random variable with a mean of \(0\). In
+matrix form, this can be written as 
+
 \[
 \begin{bmatrix}
 Y_1\\
@@ -81,24 +116,42 @@ Y_n
 \end{bmatrix}
 \]
 
-Here, the \(X_{i,j}\) represent our coded categorical variables.   These categorical variables are coded according to the hypotheses of interest.  In many cases, the coding is done so that the newly coded variables are contrasts of the old categorical variables. 
+Here, the $X_{i,j}$ represent our coded categorical variables. These
+categorical variables are coded according to the hypotheses of interest.
+In many cases, the coding is done so that the newly coded variables are
+contrasts of the old categorical variables.
 
-A contrast is a linear combination of variables such that the coefficients sum to 0. 
+A contrast is a linear combination of variables such that the
+coefficients sum to 0.
 \[\sum_i{a_i\theta_i}\quad\text{such that}\quad\sum_i{a_i}=0\]
 
-Unlike in ANOVA, in regression, it is best to use coding schemes based on orthogonal and fractional contrasts.  Orthogonal contrasts are a set of contrasts in which, for any distinct pair, the sum of the cross-products of the coefficients is 0.
-\[\sum_i{a_ib_i}=0\]
+Unlike in ANOVA, in regression, it is best to use coding schemes based
+on orthogonal and fractional contrasts. Orthogonal contrasts are a set
+of contrasts in which, for any distinct pair, the sum of the
+cross-products of the coefficients is 0. 
+\[
+\sum_i{a_ib_i}=0
+\]
 
 I believe that a fractional contrast is such that 
-\[\sum_i{|a_i|}=2\]
+\[
+\sum_i{|a_i|}=2
+\]
 
-Categorical variable coding schemes can be easily expressed in a matrix format.  The convention is to have the old categorical variables as the row headers and the newly coded variables as the column headers.  In such a matrix, the \([c_{ij}]\) entry indicates the value of the \(j^{th}\) level of the new variable for the \(i^{th}\) level of the old variable.  Here is an example of such a matrix constructed using orthogonal and fractional contrasts.
+Categorical variable coding schemes can be easily expressed in a matrix
+format. The convention is to have the old categorical variables as the
+row headers and the newly coded variables as the column headers. In such
+a matrix, the $[c_{ij}]$ entry indicates the value of the $j^{th}$ level
+of the new variable for the $i^{th}$ level of the old variable. Here is
+an example of such a matrix constructed using orthogonal and fractional
+contrasts.
 
 ```{r}
 (contr_mat = matrix(data = c(1,0,-1,0.5,-1,0.5), nrow = 3, ncol = 2))
 ```
 
-Interpreting this coding scheme in the context of our linear model, we see that
+Interpreting this coding scheme in the context of our linear model, we
+see that
 
 \[
 \begin{aligned}
@@ -108,7 +161,8 @@ E(Y_i|X_{i1}=-1,X_{i2}=\tfrac{1}{2}) &= \beta_0-\beta_1+\tfrac{1}{2}\beta_2 &= \
 \end{aligned}
 \]
 
-or, in matrix format,
+
+or, in matrix format, 
 \[
 \begin{bmatrix}
 1 & 1 & \tfrac{1}{2} \\
@@ -128,27 +182,17 @@ or, in matrix format,
 \end{bmatrix}
 \]
 
-We can solve this for \(\boldsymbol{\beta}\) for interpretation's sake.
-
+We can solve this for $\boldsymbol{\beta}$ for interpretation's sake.
 
 ```{r}
 solve(cbind(rep(1, nrow(contr_mat)), contr_mat))
 ```
 
-\[
-\begin{aligned}
-\begin{multlined}
-\beta_0 &= \tfrac{\mu_1+\mu_2+\mu_3}{3} = \text{grand mean response} \\
-2\beta_1 &= \mu_1 - \mu_3  = \small\text{difference in the mean response between levels 1 & 3 of the old categorical variable}\\
-\tfrac{3}{2}\beta_2 &= \tfrac{\mu_1+\mu_3}{2} - \mu_2 = \small\text{difference in the mean response between the average of levels 1 & 3 and level 2 of the old categorical variable}
-\end{multlined}
-\end{aligned}
-\]
-
-I said:
-\[
-\Bigl\small\text{I just want}\tiny\text{ small text!}\Bigr
-\]
+\begin{tabularx}{\textwidth}{r c c X}
+\(\beta_0 =\) &\(\tfrac{\mu_1+\mu_2+\mu_3}{3}\) &\(=\) &grand mean response \\
+\(2\beta_1 =\) &\(\mu_1 - \mu_3\) &\(=\) &difference in the mean response between levels 1 and 3 of the old categorical variable \\
+\(\tfrac{3}{2}\beta_2 =\) &\(\tfrac{\mu_1+\mu_3}{2} - \mu_2\) &\(=\) &difference in the mean response between level 2 and the average of levels 1 and 3 of the old categorical variable
+\end{tabularx}
 
 Let's look at another contrast matrix and see if we can interpret it.
 
@@ -157,37 +201,39 @@ contr.helmert(n = 3)
 solve(cbind(rep(1, 3), contr.helmert(n = 3)))
 ```
 
-\[
-\begin{aligned}
-\beta_0 &= \tfrac{\mu_1+\mu_2+\mu_3}{3} = \text{grand mean response} \\
-2\beta_1 &= \mu_2 - \mu_1  = \text{difference in the mean response between levels 2 & 1 of the old categorical variable}\\
-3\beta_2 &= \mu_3 - \tfrac{\mu_1+\mu_2}{2} = \text{difference in the mean response between level 3 and the average of levels 1 & 2 of the old categorical variable}
-\end{aligned}
-\]
+\begin{tabularx}{\textwidth}{r c c X}
+\(\beta_0 =\) &\(\tfrac{\mu_1+\mu_2+\mu_3}{3}\) &\(=\) &grand mean response \\
+\(2\beta_1 =\) &\(\mu_2 - \mu_1\) &\(=\) &difference in the mean response between levels 2 \& 1 of the old categorical variable \\
+\(3\beta_2 =\) &\(\mu_3 - \tfrac{\mu_1+\mu_2}{2}\) &\(=\) &difference in the mean response between level 3 and the average of levels 1 and 2 of the old categorical variable
+\end{tabularx}
 
-Perhaps you have heard of polynomial regression?  Polynomial regression is just a special case of linear regression in a different basis.  In polynomial regression, (just like multiple linear regression) if you use all of your explanatory variables, then you will likely get multi-collinearity problems.  
+Perhaps you have heard of polynomial regression? Polynomial regression
+is just a special case of linear regression in a different basis. In
+polynomial regression, (just like multiple linear regression) if you use
+all of your explanatory variables, then you will likely get
+multi-collinearity problems.
 
 ```{r}
 contr.poly(n=3)
 (A = solve(cbind(rep(1, 3), contr.poly(n=3))))
 ```
 
-The first matrix shows how to code the levels of your categorical variable and the second matrix is used for interpretation.
+The first matrix shows how to code the levels of your categorical
+variable and the second matrix is used for interpretation.
 
-\[
-\begin{aligned}
-\beta_0 &= \tfrac{\mu_1+\mu_2+\mu_3}{3} = \text{grand mean response} \\
-\beta_1 &= -0.707\mu_1 + 0.707\mu_3  = \text{measure of a linear trend in the mean response}\\
-\beta_2 &= 0.408 \mu_3 - 0.816 \mu_2 + 0.408 \mu3 = \text{measure of a quadratic trend in the mean response}
-\end{aligned}
-\]
+\begin{tabularx}{\textwidth}{r c c X}
+\(\beta_0 =\) &\(\tfrac{\mu_1+\mu_2+\mu_3}{3}\) &\(=\) &grand mean response \\
+\(\beta_1 =\) &\(-0.707\mu_1 + 0.707\mu_3\) &\(=\) &measure of a linear trend in the mean response \\
+\(\beta_2 =\) &\(0.408 \mu_3 - 0.816 \mu_2 + 0.408 \mu_3\) &\(=\) &measure of a quadratic trend in the mean response
+\end{tabularx}
 
-For example, we can test whether the difference between the means from two populations are equal by doing a linear regression or an ANOVA.
+For example, we can test whether the difference between the means from
+two populations are equal by doing a linear regression or an ANOVA.
 
 Let's make up some data and try it!
 
 ```{r}
-source(file.path("R-source-code", "fabricate.R"))
+source(file.path("src", "fabricate.R"))
 
 design = data.frame(group = c(0, 1), n = c(10, 10))
 
@@ -217,22 +263,29 @@ ggplot(data = data1,
 
 ```
 
-The way you code your categorical variables in a linear model is extremely important.  Different codings lead to different interpretations of the parameters (betas) in your model. For us, our model is 
+The way you code your categorical variables in a linear model is
+extremely important. Different codings lead to different interpretations
+of the parameters (betas) in your model. For us, our model is 
 \[
 Y_i = \beta_0+\beta_{i1}X_{i1}+\epsilon_i
 \]
-From this, we have
+
+From this, we have 
 \[
 \begin{aligned}
 E(Y_i|X_{i1}=0) &=\beta_0 \\
 E(Y_i|X_{i1}=1) &=\beta_0 + \beta_1
 \end{aligned}
 \]
-From which we can derive,
+
+From which we can derive, 
+
 \[
 \beta_1 = E(Y_i|X_{i1}=1) - E(Y_i|X_{i1}=0)
 \]
-So, our slope estimate is the estimated amount by which the mean of group1 is above that of the mean of group0.
+
+So, our slope estimate is the estimated amount by which the mean of
+group1 is above that of the mean of group0.
 
 Run linear regression
 
@@ -267,7 +320,9 @@ summary(data1_ANOVA_independent_samples)[[1]][[1, 5]]
 data1_t_test_independent_samples$p.value
 ```
 
-Now, let's look at something else. The CO2 data frame has 84 rows and 5 columns of data from an experiment on the cold tolerance of the grass species Echinochloa crus-galli.
+Now, let's look at something else. The CO2 data frame has 84 rows and 5
+columns of data from an experiment on the cold tolerance of the grass
+species Echinochloa crus-galli.
 
 ```{r}
 data("CO2")
@@ -275,8 +330,9 @@ data("CO2")
 CO2[sample(nrow(CO2), size = 5), ]
 ```
 
-What is a linear model? In the context of linear regression, a linear model is a relationship between the responses and the explanatory variables that is linear in the parameters. 
-
+What is a linear model? In the context of linear regression, a linear
+model is a relationship between the responses and the explanatory
+variables that is linear in the parameters.
 
 ```{r}
 CO2_recipe = recipe(uptake ~ ., data = CO2) %>%
@@ -294,10 +350,8 @@ CO2_fit = CO2_workflow %>%
   fit(data = CO2)
 ```
 
-
 ```{r}
 CO2_fit %>% 
   pull_workflow_fit() %>%
   tidy()
 ```
-
